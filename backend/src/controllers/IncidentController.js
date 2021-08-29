@@ -36,7 +36,7 @@ module.exports = {
 
     const incident = await connection('incidents').where('id', id).select('ong_id').first();
 
-    if(incident.ong_id !== ong_id){
+    if(incident.ong_id !== ong_id){ // Aqui comparo se os id's são diferentes e apresento o erro.
       return response.status(401).json({ error: 'Não autorizado!!' });
     }
 
