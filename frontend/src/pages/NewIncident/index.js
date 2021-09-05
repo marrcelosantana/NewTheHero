@@ -23,18 +23,14 @@ export default function NewIncident(){
     
     try {
       await api.post('incidents', data, { headers: {Authorization: ongId} });
-      toast.success('Registrado com sucesso! ✅', {duration: 3000});
       history.push('/profile');
     } catch (err) {
-      toast.error("❌ Erro ao cadastrar , tente novamente! ❌", {
-        duration: 3000,
-      });
+      toast.error("❌ Erro ao cadastrar , tente novamente! ❌", {duration: 2000});
     }
   }
 
   return(
     <div className="new-incident-container">
-      <Toaster />
       <Toaster />
       <div className="content">
         <section>

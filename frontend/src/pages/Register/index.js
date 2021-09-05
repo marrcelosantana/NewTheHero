@@ -23,10 +23,9 @@ export default function Register(){
     try{
       const response = await api.post('ongs', data); // Pego os dados acima e coloco no back-end.
       alert(`Seu ID de acesso: ${response.data.id}`);
-      toast.success('Cadastrado com sucesso! ✅', {duration: 3000});
       history.push('/');
     } catch (err) {
-      alert('❌ Erro no cadastro, tente novamente. ❌')
+      toast.error('❌ Erro no cadastro, tente novamente. ❌', {duration: 2000});
     }
   }
 
