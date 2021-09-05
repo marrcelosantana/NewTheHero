@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { FiPower } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
 import api from '../../services/api';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function Profile(){
@@ -22,8 +23,9 @@ export default function Profile(){
     try {
       await api.delete(`incidents/${id}`, {headers: {Authorization: ongId}});
       setIncidents(incidents.filter(incident => incident.id !== id)); //Para o caso sumir da tela em tempo real sem precisar dar F5.
+      toast.success('Deletado com sucesso! 🗑️✅', {duration: 1000});
     } catch (error) {
-      alert('Erro ao deletar caso, tente novamente.')
+      toast.error('Erro ao deletar caso, tente novamente ❌', {duration: 1000});
     }
   }
 
@@ -34,6 +36,8 @@ export default function Profile(){
 
   return(
     <div className="profile-container">
+      <Toaster />
+      <Toaster />
       <header>
         <img src={logoImg} alt="BeTheHero" />
         <span>Bem vinda, {ongName}!</span>

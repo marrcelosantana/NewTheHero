@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import api from '../../services/api';
 import { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Register(){
 
@@ -22,14 +23,16 @@ export default function Register(){
     try{
       const response = await api.post('ongs', data); // Pego os dados acima e coloco no back-end.
       alert(`Seu ID de acesso: ${response.data.id}`);
+      toast.success('Cadastrado com sucesso! ✅', {duration: 3000});
       history.push('/');
     } catch (err) {
-      alert('Erro no cadastro, tente novamente.')
+      alert('❌ Erro no cadastro, tente novamente. ❌')
     }
   }
 
   return(
     <div className="register-container">
+      <Toaster />
       <div className="content">
         <section>
           <img src={logoImg} alt="BeTheHero" />

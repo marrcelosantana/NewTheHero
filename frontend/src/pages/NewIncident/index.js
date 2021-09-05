@@ -4,6 +4,7 @@ import logoImg from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import api from '../../services/api';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function NewIncident(){
@@ -22,14 +23,19 @@ export default function NewIncident(){
     
     try {
       await api.post('incidents', data, { headers: {Authorization: ongId} });
+      toast.success('Registrado com sucesso! ✅', {duration: 3000});
       history.push('/profile');
     } catch (err) {
-      alert('Erro ao cadastrar caso, tente novamente.');
+      toast.error("❌ Erro ao cadastrar , tente novamente! ❌", {
+        duration: 3000,
+      });
     }
   }
 
   return(
     <div className="new-incident-container">
+      <Toaster />
+      <Toaster />
       <div className="content">
         <section>
           <img src={logoImg} alt="BeTheHero" />
@@ -41,9 +47,9 @@ export default function NewIncident(){
           </Link>
         </section>
         <form onSubmit={handleNewIncident}>
-          <input type="text"  placeholder="Título do caso" value={title} onChange={e => setTitle(e.target.value)}/>
-          <textarea  placeholder="Descrição" value={description} onChange={e => setDescription(e.target.value)}/>
-          <input placeholder="Valor em reais" value={value} onChange={e => setValue(e.target.value)}/>
+          <input type="text"  placeholder="Título do caso" value={title} onChange={e => setTitle(e.target.value)} required/>
+          <textarea  placeholder="Descrição" value={description} onChange={e => setDescription(e.target.value)} required/>
+          <input placeholder="Valor em reais" value={value} onChange={e => setValue(e.target.value)} required/>
           <button className="button" type="submit">Cadastrar</button>
         </form>
       </div>
