@@ -23,9 +23,9 @@ export default function Profile(){
     try {
       await api.delete(`incidents/${id}`, {headers: {Authorization: ongId}});
       setIncidents(incidents.filter(incident => incident.id !== id)); //Para o caso sumir da tela em tempo real sem precisar dar F5.
-      toast.success('Deletado com sucesso! 🗑️✅', {duration: 1000});
+      toast.success('Deletado com sucesso! 🗑️✅', {duration: 2000});
     } catch (error) {
-      toast.error('Erro ao deletar caso, tente novamente ❌', {duration: 1000});
+      toast.error('Erro ao deletar caso, tente novamente ❌', {duration: 2000});
     }
   }
 
@@ -40,7 +40,7 @@ export default function Profile(){
       <Toaster />
       <header>
         <img src={logoImg} alt="BeTheHero" />
-        <span>Bem vinda, {ongName}!</span>
+        <span>Bem vinda, <label className="span-ong-name">{ongName}</label>!</span>
         <Link to="/incidents/new" className="button">Cadastrar novo caso</Link>
         <button type="button" onClick={handleLogout}>
           <FiPower size={18} color="#e02041"/>
