@@ -27,7 +27,6 @@ export default function Logon(){
       alert('Erro no Login, tente novamente.')
     }
   }
-
   return(
     <div className="logon-container">
       <section className="form">
